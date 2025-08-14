@@ -50,7 +50,8 @@ export class WebsocketProxyOverAdb extends WebsocketProxy {
         const service = new WebsocketProxy(ws);
         AdbUtils.forward(udid, remote)
             .then((port) => {
-                return service.init(`ws://127.0.0.1:${port}${path ? path : ''}`);
+                const forwardHost = process.env.ADB_FORWARD_HOST || process.env.ADB_HOST || '127.0.0.1';
+                return service.init(`ws://${forwardHost}:${port}${path ? path : ''}`);
             })
             .catch((e) => {
                 const msg = `[${this.TAG}] Failed to start service: ${e.message}`;
