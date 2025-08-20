@@ -1,10 +1,14 @@
 build:
 	docker build -t ws-scrcpy:latest .
 
-run:
+run-docker:
 	docker run --rm -p 8001:8001 \
 		-e ADB_HOST=host.docker.internal \
 		-e ADB_PORT=5037 \
 		-e ADB_SERVER_SOCKET='tcp:host.docker.internal:5037' \
 		-e ADB_FORWARD_HOST=host.docker.internal \
   		ws-scrcpy:latest
+
+run:
+	echo "Running ws-scrcpy... if something is wrong, try to run the app with node 16"
+	npm install && npm start
