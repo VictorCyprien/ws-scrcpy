@@ -10,5 +10,4 @@ run-docker:
   		ws-scrcpy:latest
 
 run:
-	echo "Running ws-scrcpy... if something is wrong, try to run the app with node 16"
-	npm install && npm start
+	. ${NVM_DIR}/nvm.sh && nvm use node 16 && npm install && npm start
